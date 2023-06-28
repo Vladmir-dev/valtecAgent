@@ -41,21 +41,40 @@ const New = ({ inputs, title, type }) => {
                 />
               </div>
 
-              <div style={{ display: "flex", flexWrap:'wrap', gap:'20px'}}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
                 {inputs.map((input) => (
                   <div className="formInput" key={input.id}>
                     <label>{input.label}</label>
                     <input type={input.type} placeholder={input.placeholder} />
                   </div>
                 ))}
+                {type === "job" && (
+                  <div className="flex">
+                    <div>
+                      <label>Agent</label>
+                      <select className="p-2 mx-4">
+                        <option></option>
+                        <option>Joe James</option>
+                        <option>Paul Ssajjabbi</option>
+                        <option>Kajjubi Emma</option>
+                      </select>
+                    </div>
+                    <label>Supervisor</label>
+                    <select className="h-10 mx-4">
+                      <option></option>
+                      <option>Joe James</option>
+                      <option>Paul Ssajjabbi</option>
+                      <option>Kajjubi Emma</option>
+                    </select>
+                  </div>
+                )}
               </div>
 
               <div>
-                
                 {type === "user" && (
                   <div>
                     <label style={{ margin: "10px" }}>Permisions</label>
-                    <select>
+                    <select className="p-2">
                       <option>Admin</option>
                       <option>Supervisor</option>
                       <option>Field Agent</option>
@@ -64,19 +83,16 @@ const New = ({ inputs, title, type }) => {
                 )}
               </div>
               {type === "job" && (
-                  <div className="formInput" style={{ width: "100%" }}>
-                    <h1>Client Details</h1>
-                    {clientdet.map((item, index) => (
-                      <div >
-                        <label>{item.label}</label>
-                        <input
-                          type={item.type}
-                          placeholder={item.placeholder}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="formInput" style={{ width: "100%" }}>
+                  <h1>Client Details</h1>
+                  {clientdet.map((item, index) => (
+                    <div>
+                      <label>{item.label}</label>
+                      <input type={item.type} placeholder={item.placeholder} />
+                    </div>
+                  ))}
+                </div>
+              )}
               <button>Send</button>
             </form>
           </div>

@@ -14,15 +14,15 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
-import logo from '../../images/valtec-logo.png'
+import logo from "../../images/valtec-logo.png";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none", }}>
-          <img src={logo} alt="logo" style={{width:'130px'}}/>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <img src={logo} alt="logo" style={{ width: "130px" }} />
           {/* <span className="logo">Dashboard</span> */}
         </Link>
       </div>
@@ -31,12 +31,12 @@ const Sidebar = () => {
         <ul>
           <p className="title">MAIN</p>
           <Link to="/">
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
           </Link>
-          
+
           <p className="title">LISTS</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
@@ -50,10 +50,14 @@ const Sidebar = () => {
               <span>Jobs</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
+
+          <Link to="/jobs">
+            <li>
+              <CreditCardIcon className="icon" />
+              <span>Field Jobs</span>
+            </li>
+          </Link>
+
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
@@ -64,8 +68,7 @@ const Sidebar = () => {
             <span>Notifications</span>
           </li>
           <p className="title">SERVICE</p>
-          
-          
+
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>

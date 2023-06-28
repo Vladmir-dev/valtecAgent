@@ -9,7 +9,9 @@ import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
-import "./App.css";
+import FieldJobs from "./components/fieldjobs/FieldJobs";
+import SingleJob from "./components/singleJob/SingleJob";
+// import "./App.css";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -23,7 +25,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="users">
               <Route index element={<List type={"user"} />} />
-              <Route path=":userId" element={<Single />} />
+              <Route path=":userId" element={<Single type={"user"}/>} />
               <Route
                 path="new"
                 element={
@@ -31,9 +33,10 @@ function App() {
                 }
               />
             </Route>
+
             <Route path="products">
               <Route index element={<List type={"job"} />} />
-              <Route path=":productId" element={<Single />} />
+              <Route path=":productId" element={<Single type={"job"}/>} />
               <Route
                 path="new"
                 element={
@@ -44,6 +47,10 @@ function App() {
                   />
                 }
               />
+            </Route>
+            <Route path="jobs">
+              <Route index element={<FieldJobs />} />
+              <Route path=":jobID" element={<SingleJob />} />
             </Route>
           </Route>
         </Routes>
