@@ -15,9 +15,14 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import logo from "../../images/valtec-logo.png";
+import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import { logout } from "../../features/auth/authSlice";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  // const { dispatch } = useContext(DarkModeContext);
+  const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -30,15 +35,15 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
-          <Link to="/">
+          <Link to="/dashboard">
             <li>
               <DashboardIcon className="icon" />
-              <span>Dashboard</span>
+              <span>Agent Dashboard</span>
             </li>
           </Link>
 
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          {/* <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Users</span>
@@ -49,20 +54,20 @@ const Sidebar = () => {
               <StoreIcon className="icon" />
               <span>Jobs</span>
             </li>
-          </Link>
+          </Link> */}
 
-          <Link to="/jobs">
+          <Link to="/dashboard/jobs">
             <li>
               <CreditCardIcon className="icon" />
-              <span>Field Jobs</span>
+              <span>Jobs</span>
             </li>
           </Link>
 
           <p className="title">USEFUL</p>
-          <li>
+          {/* <li>
             <InsertChartIcon className="icon" />
             <span>Stats</span>
-          </li>
+          </li> */}
           <li>
             <NotificationsNoneIcon className="icon" />
             <span>Notifications</span>
@@ -78,7 +83,7 @@ const Sidebar = () => {
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={() => dispatch(logout())}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>

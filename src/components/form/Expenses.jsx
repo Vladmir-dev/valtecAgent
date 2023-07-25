@@ -8,29 +8,33 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
+const Expenses = ({ page, setPage, formData, setFormData }) => {
   const initialList = [
     {
       item: "Tape Measure",
-      purpose: "Measuring",
+      amount: "2000",
+      rate: "2",
+      total: "4000",
     },
   ];
 
   const [list, setList] = React.useState(initialList);
   const [Item, setItem] = React.useState("");
-  const [Purpose, setPurpose] = React.useState("");
+  const [Amount, setAmount] = React.useState("");
+  const [Rate, setRate] = React.useState("");
 
   function handleAdd() {
     const newList = list.concat({
       item: Item,
-      purpose: Purpose,
+      amount: Amount,
+      rate: Rate,
+      total: parseInt(Amount) * parseInt(Rate),
     });
     setList(newList);
   }
-
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
-      <div className="step-title">Equipment & Purpose</div>
+      <div className="step-title">Expenses</div>
       <div className="w-full flex justify-center items-center gap-8">
         <input
           type="text"
@@ -41,10 +45,17 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
         />
         <input
           type="text"
-          placeholder="Purpose"
+          placeholder="Amount"
           className="px-2 py-4"
-          value={Purpose}
-          onChange={(e) => setPurpose(e.target.value)}
+          value={Amount}
+          onChange={(e) => setAmount(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Rate"
+          className="px-2 py-4"
+          value={Rate}
+          onChange={(e) => setRate(e.target.value)}
         />
         <button
           onClick={handleAdd}
@@ -60,7 +71,9 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
               <TableRow>
                 <TableCell className="tableCell">ID</TableCell>
                 <TableCell className="tableCell">Item</TableCell>
-                <TableCell className="tableCell">Purpose</TableCell>
+                <TableCell className="tableCell">Amount</TableCell>
+                <TableCell className="tableCell">Rate</TableCell>
+                <TableCell className="tableCell">Total</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -68,7 +81,9 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
                 <TableRow key={index}>
                   <TableCell className="tableCell">{index}</TableCell>
                   <TableCell className="tableCell">{row.item}</TableCell>
-                  <TableCell className="tableCell">{row.purpose}</TableCell>
+                  <TableCell className="tableCell">{row.amount}</TableCell>
+                  <TableCell className="tableCell">{row.rate}</TableCell>
+                  <TableCell className="tableCell">{row.total}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -93,4 +108,4 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
   );
 };
 
-export default PersonalInfo;
+export default Expenses;

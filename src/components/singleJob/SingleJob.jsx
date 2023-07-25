@@ -7,6 +7,9 @@ import LocationInfo from "../form/LocationInfo";
 import OtherInfo from "../form/OtherInfo";
 import PersonalInfo from "../form/PersonalInfo";
 import "../form/style.scss";
+import Expenses from "../form/Expenses";
+import Pictures from "../form/Pictures";
+import Process2 from "../form/Process2";
 
 const SingleJob = () => {
   const [page, setPage] = useState(0);
@@ -43,12 +46,25 @@ const SingleJob = () => {
       page={page}
       setPage={setPage}
     />,
+    <Expenses
+      formData={formData}
+      setFormData={setFormData}
+      page={page}
+      setPage={setPage}
+    />,
+    <Pictures
+      formData={formData}
+      setFormData={setFormData}
+      page={page}
+      setPage={setPage}
+    />,
     <OtherInfo
       formData={formData}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
+    <Process2 page={page} setPage={setPage} />,
   ];
 
   return (
@@ -62,10 +78,14 @@ const SingleJob = () => {
               style={{
                 width:
                   page === 0
-                    ? "25%"
+                    ? "5%"
                     : page === 1
-                    ? "50%"
+                    ? "15%"
                     : page === 2
+                    ? "20%"
+                    : page == 3
+                    ? "45%"
+                    : page == 4
                     ? "75%"
                     : "100%",
               }}

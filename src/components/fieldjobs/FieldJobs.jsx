@@ -21,7 +21,7 @@ const FieldJobs = () => {
                 <p>22/06/2023 13:19</p>
               </div>
               {accept ? (
-                <Link to="/jobs/1">
+                <Link to="/dashboard/jobs/1">
                 <button  className="bg-green-500 px-4 py-2 text-white rounded-md">
                   Details
                 </button>
