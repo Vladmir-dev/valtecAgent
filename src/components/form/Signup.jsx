@@ -59,7 +59,7 @@ const Signup = ({ page, setPage, formData, setFormData }) => {
             type="text"
             placeholder="First Name"
             value={firstName}
-            className="form-group"
+            className="form-group p-2"
             onChange={
               (e) => setFirstName(e.target.value) //setting the formData to the value input of the textfield
             }

@@ -11,21 +11,22 @@ import { login } from "../../features/auth/authAction";
 const Login = () => {
   const navigate = useNavigate();
   const loading = useSelector((state) => state.user.isLoading);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   // console.log("loading",loading)
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [err, setErr] = useState("");
 
   const handleSignIn = () => {
     if (password && email) {
-        console.log("email", email)
-        console.log("password", password)
+      console.log("email", email);
+      console.log("password", password);
       const data = JSON.stringify({ email, password });
-    //   console.log("data===>",data)
+      //   console.log("data===>",data)
       dispatch(login(data));
     } else {
-    console.log("Please Provide Login Details")
+      setErr("Please Provide Login Details");
     }
   };
 
@@ -42,7 +43,7 @@ const Login = () => {
             className="md:p-6 p-5 text-[20px] border-solid border-[2px] border-gray-500 focus:outline-0"
           />
           <input
-            type="text"
+            type="password"
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
             className="md:p-6 p-5 text-[20px] border-solid border-[2px] border-gray-500 focus:outline-0"
@@ -53,11 +54,16 @@ const Login = () => {
           >
             {loading ? <Spinner /> : "submit"}
           </button>
+          {err && (
+            <div className="flex justify-center item-center text-red-500">
+              <h4>! {err}</h4>
+            </div>
+          )}
           <div className="flex justify-around items-center mt-[20px] text-[20px]">
             <h1 className="cursor-pointer text-blue-700">Forgot Password ?</h1>
-            <Link to="/signup">
+            {/* <Link to="/signup">
               <h1 className="cursor-pointer text-blue-700">Sign Up</h1>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>

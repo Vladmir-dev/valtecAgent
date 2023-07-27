@@ -17,11 +17,19 @@ import { useContext } from "react";
 import logo from "../../images/valtec-logo.png";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { logout } from "../../features/auth/authSlice";
-import { useDispatch } from "react-redux";
+import { get_jobs } from "../../features/jobs/jobAction";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const Sidebar = () => {
   // const { dispatch } = useContext(DarkModeContext);
+  const token = useSelector((state) => state.user.token);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(get_jobs(token));
+  }, [token, dispatch]);
 
   return (
     <div className="sidebar">

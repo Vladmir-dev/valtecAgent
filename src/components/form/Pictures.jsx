@@ -40,9 +40,10 @@ const Pictures = ({ page, setPage, formData, setFormData }) => {
           />
         </div>
 
-        <input
+        <textarea
           type="text"
           placeholder="Comment"
+          className="p-4 border-solid border-[2px] border-gray-400 rounded-md focus:outline-0"
           value={Comment}
           onChange={(e) => setComment(e.target.value)}
         />

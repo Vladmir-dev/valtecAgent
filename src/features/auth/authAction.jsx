@@ -43,7 +43,7 @@ export const signup = createAsyncThunk(
     try {
       console.log("details in try==>", signupDetails);
       const res = await axios.post(
-        "http://localhost:8000​/api/v1/register",
+        "http://localhost:8000/api/v1/register",
         signupDetails,
         Config
       );
@@ -72,7 +72,7 @@ export const get_user = createAsyncThunk(
       console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.get(
-        "https://localhost:8000/api/v1/user",
+        "http://localhost:8000/api/v1/user",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -8,8 +8,10 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import WordEditor from "../WordEditor";
 import land from "../../assets/land.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const Process2 = ({ page, setPage }) => {
+    let navigate = useNavigate();
   const location_info = [
     {
       name: "Wakiso Land",
@@ -264,7 +266,7 @@ const Process2 = ({ page, setPage }) => {
         </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={() => navigate("/dashboard/jobs")}
         >
           Submit
         </button>

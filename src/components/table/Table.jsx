@@ -6,8 +6,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useSelector } from "react-redux";
 
 const List = () => {
+  const jobs = useSelector((state) => state.job.jobs);
+  console.log("jobs", jobs);
   const rows = [
     {
       id: 1143155,
@@ -20,9 +23,8 @@ const List = () => {
       date_started: "1 March",
       status: "Accepted",
       amount: "7858489",
-      distance:"200km",
+      distance: "200km",
       method: "Cash on Delivery",
-      
     },
     {
       id: 2235235,
@@ -35,7 +37,7 @@ const List = () => {
       date_started: "1 March",
       status: "Pending",
       amount: "7858489",
-      distance:"200km",
+      distance: "200km",
       method: "Cash on Delivery",
     },
     {
@@ -49,7 +51,7 @@ const List = () => {
       date_started: "1 March",
       status: "Progress 20%",
       amount: "7858489",
-      distance:"200km",
+      distance: "200km",
       method: "Cash on Delivery",
     },
     {
@@ -63,7 +65,7 @@ const List = () => {
       date_started: "1 March",
       status: "Accepted",
       amount: "7858489",
-      distance:"200km",
+      distance: "200km",
       method: "Cash on Delivery",
     },
     {
@@ -77,50 +79,49 @@ const List = () => {
       date_started: "1 March",
       status: "Pending",
       amount: "7858489",
-      distance:"200km",
+      distance: "200km",
       method: "Cash on Delivery",
     },
   ];
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead >
-          <TableRow >
+        <TableHead>
+          <TableRow>
             <TableCell className="tableCell">Job ID</TableCell>
             <TableCell className="tableCell">Job Name</TableCell>
             <TableCell className="tableCell">Field Agent</TableCell>
             <TableCell className="tableCell">Supervisor</TableCell>
-            <TableCell className="tableCell">Client</TableCell>
+            {/* <TableCell className="tableCell">Client</TableCell> */}
             <TableCell className="tableCell">Date Created</TableCell>
             <TableCell className="tableCell">Date Started</TableCell>
             <TableCell className="tableCell">Job Status</TableCell>
             <TableCell className="tableCell">Location</TableCell>
             <TableCell className="tableCell">Distance</TableCell>
             <TableCell className="tableCell">Land</TableCell>
-            
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {jobs.map((row) => (
             <TableRow key={row.id}>
               <TableCell className="tableCell">{row.id}</TableCell>
               <TableCell className="tableCell">
                 <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
-                  {row.product}
+                  {/* <img src={row.img} alt="" className="image" /> */}
+                  {row.name}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
+              <TableCell className="tableCell">{row.field_agent}</TableCell>
               <TableCell className="tableCell">{row.supervisor}</TableCell>
-              <TableCell className="tableCell">{row.client}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
+              {/* <TableCell className="tableCell">{row.client}</TableCell> */}
+              <TableCell className="tableCell">{row.date_created}</TableCell>
               <TableCell className="tableCell">{row.date_started}</TableCell>
               <TableCell className="tableCell">
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
+              <TableCell className="tableCell">{row.location}</TableCell>
               <TableCell className="tableCell">{row.distance}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
+              <TableCell className="tableCell">{row.name}</TableCell>
             </TableRow>
           ))}
         </TableBody>

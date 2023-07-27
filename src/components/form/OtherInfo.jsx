@@ -7,8 +7,11 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { useNavigate } from "react-router-dom";
 
 const OtherInfo = ({ page, setPage, formData, setFormData }) => {
+  let navigate = useNavigate();
+
   const initialList = [
     {
       title: "Tape Measure",
@@ -37,21 +40,21 @@ const OtherInfo = ({ page, setPage, formData, setFormData }) => {
         <input
           type="text"
           placeholder="Title"
-          className="px-2 py-5 w-[70%]"
+          className="px-2 py-5 w-[70%] focus:outline-0"
           value={Title}
           onChange={(e) => setTitle(e.target.value)}
         />
         <input
           type="text"
           placeholder="Subtitle"
-          className="px-2 py-4 w-[70%]"
+          className="px-2 py-4 w-[70%] focus:outline-0"
           value={Subtitle}
           onChange={(e) => setSubtitle(e.target.value)}
         />
         <textarea
           type="text"
           placeholder="Description"
-          className="px-2 py-4 w-[70%] border-solid border-[2px] border-purple-700 rounded-md"
+          className="px-2 py-4 w-[70%] border-solid border-[2px] border-purple-700 rounded-md focus:outline-0"
           value={Desc}
           onChange={(e) => setDesc(e.target.value)}
         />

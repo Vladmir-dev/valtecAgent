@@ -36,6 +36,7 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
         <input
           type="text"
           placeholder="Land Name"
+          className="p-3"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -43,6 +44,7 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
         <input
           type="text"
           placeholder="Address"
+          className="p-3"
           value={location}
           onChange={(e) =>
             setFormData({ ...formData, address: e.target.value })
