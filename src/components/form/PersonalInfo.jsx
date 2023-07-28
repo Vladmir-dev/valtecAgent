@@ -7,11 +7,19 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+import { equipment } from "../../features/jobs/jobAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
+const PersonalInfo = ({ page, setPage, id, setFormData }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  const loading = useSelector((state) => state.job.isLoading);
   const initialList = [
     {
-      item: "Tape Measure",
+      job: id,
+      name: "Tape Measure",
       purpose: "Measuring",
     },
   ];
@@ -22,11 +30,17 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
 
   function handleAdd() {
     const newList = list.concat({
-      item: Item,
+      job: id,
+      name: Item,
       purpose: Purpose,
     });
     setList(newList);
   }
+
+  const handleSubmit = () => {
+    dispatch(equipment({ token, list }));
+    setPage(page + 1);
+  };
 
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
@@ -64,13 +78,15 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {list.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell className="tableCell">{index}</TableCell>
-                  <TableCell className="tableCell">{row.item}</TableCell>
-                  <TableCell className="tableCell">{row.purpose}</TableCell>
-                </TableRow>
-              ))}
+              {list &&
+                list.length > 0 &&
+                list.map((row, index) => (
+                  <TableRow key={index}>
+                    <TableCell className="tableCell">{index}</TableCell>
+                    <TableCell className="tableCell">{row.item}</TableCell>
+                    <TableCell className="tableCell">{row.purpose}</TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
@@ -84,9 +100,9 @@ const PersonalInfo = ({ page, setPage, formData, setFormData }) => {
         </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={handleSubmit}
         >
-          Submit
+          {loading ? <Spinner /> : "Submit"}
         </button>
       </div>
     </div>

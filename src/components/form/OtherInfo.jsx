@@ -8,15 +8,23 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useNavigate } from "react-router-dom";
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+import { other_info } from "../../features/jobs/jobAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const OtherInfo = ({ page, setPage, formData, setFormData }) => {
+const OtherInfo = ({ page, setPage, id, setFormData }) => {
   let navigate = useNavigate();
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  const loading = useSelector((state) => state.job.isLoading);
 
   const initialList = [
     {
+      Job: id,
       title: "Tape Measure",
-      subtitle: "dhdhjdkkdkdk",
-      desc: "tr2iiwoqjpiqjo hqoh  qoih  qoihqo  q",
+      sub_title: "dhdhjdkkdkdk",
+      description: "tr2iiwoqjpiqjo hqoh  qoih  qoihqo  q",
     },
   ];
 
@@ -27,12 +35,19 @@ const OtherInfo = ({ page, setPage, formData, setFormData }) => {
 
   function handleAdd() {
     const newList = list.concat({
+      Job: id,
       title: Title,
-      subtitle: Subtitle,
-      desc: Desc,
+      sub_title: Subtitle,
+      description: Desc,
     });
     setList(newList);
   }
+
+  const handleSubmit = () => {
+    dispatch(other_info({ token, list }));
+    setPage(page + 1);
+  };
+
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
       <div className="step-title">Any Other Info</div>
@@ -100,9 +115,9 @@ const OtherInfo = ({ page, setPage, formData, setFormData }) => {
         </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={handleSubmit}
         >
-          Submit
+          {loading ? <Spinner /> : "Submit"}
         </button>
       </div>
     </div>

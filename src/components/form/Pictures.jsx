@@ -1,8 +1,16 @@
 import React from "react";
 import land from "../../assets/land.jpeg";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+import { pictures } from "../../features/jobs/jobAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const Pictures = ({ page, setPage, formData, setFormData }) => {
+const Pictures = ({ page, setPage, id, setFormData }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  const loading = useSelector((state) => state.job.isLoading);
+
   const initialList = [
     {
       url: land,
@@ -21,7 +29,23 @@ const Pictures = ({ page, setPage, formData, setFormData }) => {
       comment: Comment,
     });
     setList(newList);
+    setSelectedImage(null);
+    setComment("");
   }
+
+  const handleSubmit = () => {
+    const formData = new FormData();
+    console.log(list)
+    // Append each image with its corresponding comment
+    list.forEach((imageObject, index) => {
+      console.log("single image",imageObject.url)
+      formData.append(`images`, imageObject.url);
+      formData.append(`comments`, imageObject.comment);
+    });
+
+    dispatch(pictures({ token, formData, id }));
+    setPage(page + 1);
+  };
 
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
@@ -29,6 +53,15 @@ const Pictures = ({ page, setPage, formData, setFormData }) => {
 
       <div className="flex flex-col justify-center items-center gap-8">
         <div className="formInput">
+          <img
+            src={
+              selectedImage
+                ? URL.createObjectURL(selectedImage)
+                : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+            }
+            alt=""
+            className="w-[150px] rounded"
+          />
           <label htmlFor="file">
             Image: <DriveFolderUploadOutlinedIcon className="icon" />
           </label>
@@ -80,7 +113,7 @@ const Pictures = ({ page, setPage, formData, setFormData }) => {
         </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={handleSubmit}
         >
           Submit
         </button>

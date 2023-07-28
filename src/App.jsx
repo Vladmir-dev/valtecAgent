@@ -109,7 +109,7 @@ const DashboardRoutes = () => {
 
       <Route path="jobs">
         <Route index element={<FieldJobs />} />
-        <Route path=":jobID" element={<SingleJob />} />
+        <Route path="/:jobID" element={<SingleJob />} />
       </Route>
     </Routes>
   );

@@ -7,14 +7,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
+import { expenses } from "../../features/jobs/jobAction";
+import { useDispatch, useSelector } from "react-redux";
 
-const Expenses = ({ page, setPage, formData, setFormData }) => {
+const Expenses = ({ page, setPage, id, setFormData }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  const loading = useSelector((state) => state.job.isLoading);
   const initialList = [
     {
+      job: id,
       item: "Tape Measure",
-      amount: "2000",
+      quantity: "2000",
       rate: "2",
-      total: "4000",
+      amount: "4000",
     },
   ];
 
@@ -25,13 +33,20 @@ const Expenses = ({ page, setPage, formData, setFormData }) => {
 
   function handleAdd() {
     const newList = list.concat({
+      job: id,
       item: Item,
-      amount: Amount,
+      quantity: Amount,
       rate: Rate,
-      total: parseInt(Amount) * parseInt(Rate),
+      amount: parseInt(Amount) * parseInt(Rate),
     });
     setList(newList);
   }
+
+  const handleSubmit = () => {
+    dispatch(expenses({ token, list }));
+    setPage(page + 1);
+  };
+
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
       <div className="step-title">Expenses</div>
@@ -99,7 +114,7 @@ const Expenses = ({ page, setPage, formData, setFormData }) => {
         </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={handleSubmit}
         >
           Submit
         </button>

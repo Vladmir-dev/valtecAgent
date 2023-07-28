@@ -16,7 +16,7 @@ export const login = createAsyncThunk(
       console.log("login details ===>", loginDetails);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "http://localhost:8000/api/v1/login/",
+        "https://api.valtecvaluers.com/api/v1/login/",
         loginDetails,
         Config
       );
@@ -43,7 +43,7 @@ export const signup = createAsyncThunk(
     try {
       console.log("details in try==>", signupDetails);
       const res = await axios.post(
-        "http://localhost:8000/api/v1/register",
+        "https://api.valtecvaluers.com/api/v1/register",
         signupDetails,
         Config
       );
@@ -72,7 +72,7 @@ export const get_user = createAsyncThunk(
       console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.get(
-        "http://localhost:8000/api/v1/user",
+        "https://api.valtecvaluers.com/api/v1/user",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

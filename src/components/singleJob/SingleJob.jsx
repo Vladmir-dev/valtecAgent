@@ -10,8 +10,12 @@ import "../form/style.scss";
 import Expenses from "../form/Expenses";
 import Pictures from "../form/Pictures";
 import Process2 from "../form/Process2";
+import { useParams } from "react-router-dom";
 
 const SingleJob = () => {
+  const { jobID } = useParams();
+  console.log("url", jobID);
+
   const [page, setPage] = useState(0);
   const [formData, setFormData] = useState({
     fullname: "",
@@ -29,42 +33,42 @@ const SingleJob = () => {
 
   const componentList = [
     <Signup
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
     <LocationInfo
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
     <PersonalInfo
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
     <Expenses
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
     <Pictures
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
     <OtherInfo
-      formData={formData}
+      id={jobID}
       setFormData={setFormData}
       page={page}
       setPage={setPage}
     />,
-    <Process2 page={page} setPage={setPage} />,
+    <Process2 page={page} setPage={setPage} id={jobID} />,
   ];
 
   return (

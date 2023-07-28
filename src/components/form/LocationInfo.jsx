@@ -1,8 +1,14 @@
 import React from "react";
 import "./style.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { land_info } from "../../features/jobs/jobAction";
 
-const LocationInfo = ({ page, setPage, formData, setFormData }) => {
-  const [name, setName] = React.useState("");
+const LocationInfo = ({ page, setPage, id, setFormData }) => {
+  const dispatch = useDispatch();
+  const token = useSelector((state) => state.user.token);
+  const loading = useSelector((state) => state.job.isLoading);
+
+  const [land_name, setName] = React.useState("");
   const [location, setLocation] = React.useState("");
   const [lat, setLat] = React.useState("");
   const [lon, setLon] = React.useState("");
@@ -29,6 +35,18 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
     }
   };
 
+  const handleSubmit = () => {
+    const coordinates = `${lat}, ${lon}`;
+    const formData = {
+      job_id: id,
+      land_name: land_name,
+      location: location,
+      coordinates: coordinates,
+    };
+    dispatch(land_info({ token, formData }));
+    setPage(page + 1);
+  };
+
   return (
     <div className="md:w-[80vw] flex flex-col justify-center items-center gap-10">
       <div className="step-title">Location Information</div>
@@ -37,7 +55,7 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
           type="text"
           placeholder="Land Name"
           className="p-3"
-          value={name}
+          value={land_name}
           onChange={(e) => setName(e.target.value)}
         />
 
@@ -46,9 +64,7 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
           placeholder="Address"
           className="p-3"
           value={location}
-          onChange={(e) =>
-            setFormData({ ...formData, address: e.target.value })
-          }
+          onChange={(e) => setLocation(e.target.value)}
         />
       </div>
 
@@ -80,15 +96,15 @@ const LocationInfo = ({ page, setPage, formData, setFormData }) => {
       </div>
 
       <div className="flex gap-10">
-        <button
+        {/* <button
           className="bg-green-500 p-2 rounded-md text-white"
           onClick={() => setPage(page - 1)}
         >
           Previous
-        </button>
+        </button> */}
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={() => setPage(page + 1)}
+          onClick={handleSubmit}
         >
           Submit
         </button>
