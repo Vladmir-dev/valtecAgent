@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useState } from "react";
-import { clientdet } from "../../formSource";
+import { clientdet } from "../../utils/formSource";
 
 const New = ({ inputs, title, type }) => {
   const [file, setFile] = useState("");

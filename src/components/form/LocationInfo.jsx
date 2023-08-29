@@ -44,7 +44,7 @@ const LocationInfo = ({ page, setPage, id, setFormData }) => {
       coordinates: coordinates,
     };
     dispatch(land_info({ token, formData }));
-    setPage(page + 1);
+    // setPage(page + 1);
   };
 
   return (
@@ -94,19 +94,27 @@ const LocationInfo = ({ page, setPage, id, setFormData }) => {
           </button>
         </div>
       </div>
-
+    <div>
+      <button
+      className="bg-blue-500 px-12 py-3 rounded-md text-white text-[20px]"
+          
+      onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </div>
       <div className="flex gap-10">
-        {/* <button
+        <button
           className="bg-green-500 p-2 rounded-md text-white"
           onClick={() => setPage(page - 1)}
         >
-          Previous
-        </button> */}
+          Prev
+        </button>
         <button
           className="bg-green-500 p-2 rounded-md text-white"
-          onClick={handleSubmit}
+          onClick={() => setPage(page + 1)}
         >
-          Submit
+          Next
         </button>
       </div>
     </div>

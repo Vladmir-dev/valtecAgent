@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../utils/datatablesource";
 
 const Config = {
   headers: {
@@ -16,7 +17,7 @@ export const login = createAsyncThunk(
       console.log("login details ===>", loginDetails);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/login/",
+        `${BASE_URL}/login/`,
         loginDetails,
         Config
       );
@@ -43,7 +44,7 @@ export const signup = createAsyncThunk(
     try {
       console.log("details in try==>", signupDetails);
       const res = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/register",
+        `${BASE_URL}/register`,
         signupDetails,
         Config
       );
@@ -62,7 +63,6 @@ export const signup = createAsyncThunk(
   }
 );
 
-
 export const get_user = createAsyncThunk(
   "auth/get_user",
   async (token, { getState, rejectWithValue, dispatch }) => {
@@ -71,12 +71,9 @@ export const get_user = createAsyncThunk(
     try {
       console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
-      const response = await axios.get(
-        "https://api.valtecvaluers.com/api/v1/user",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      const response = await axios.get(`${BASE_URL}/user`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       //  navigate("/")
       console.log("user data ==>", response.data);
       return response.data;

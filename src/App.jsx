@@ -11,7 +11,7 @@ import {
   Navigate,
   Outlet,
 } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { productInputs, userInputs } from "./utils/formSource";
 import "./style/dark.scss";
 // import { useContext } from "react";
 // import { DarkModeContext } from "./context/darkModeContext";

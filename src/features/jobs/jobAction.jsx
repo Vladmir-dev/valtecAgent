@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { BASE_URL } from "../../utils/datatablesource";
 
 const Config = {
   headers: {
@@ -16,7 +17,7 @@ export const get_jobs = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.get(
-        "https://api.valtecvaluers.com/api/v1/job/agentjobs/",
+        `${BASE_URL}/job/agentjobs/`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +50,7 @@ export const accept_job = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/job/accept_job/",
+        `${BASE_URL}/job/accept_job/`,
         data,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -80,7 +81,7 @@ export const support_staff = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/job/support_staff/",
+        `${BASE_URL}/job/support_staff/`,
         list,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -111,7 +112,7 @@ export const land_info = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/job/land_info/",
+        `${BASE_URL}/job/land_info/`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -142,7 +143,7 @@ export const equipment = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/job/equipment/",
+        `${BASE_URL}/job/equipment/`,
         list,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -173,7 +174,7 @@ export const expenses = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        "https://api.valtecvaluers.com/api/v1/job/expenses/",
+        `${BASE_URL}/job/expenses/`,
         list,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -204,7 +205,7 @@ export const pictures = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        `https://api.valtecvaluers.com/api/v1/job/pictures/${id}/`,
+        `${BASE_URL}/job/pictures/${id}/`,
         formData,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -235,7 +236,7 @@ export const other_info = createAsyncThunk(
       //   console.log("login details ===>", token);
       // const response = await axios.post("https://kenagecollapi.onrender.com​/api/auth/login", loginDetails, Config)
       const response = await axios.post(
-        `https://api.valtecvaluers.com/api/v1/job/other_info/`,
+        `${BASE_URL}/job/other_info/`,
         list,
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -263,7 +264,7 @@ export const get_staff = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_staff/${id}`,
+        `${BASE_URL}/job/get_staff/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -289,7 +290,7 @@ export const get_expenses = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_expenses/${id}`,
+        `${BASE_URL}/job/get_expenses/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -315,7 +316,7 @@ export const get_equipment = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_equipment/${id}`,
+        `${BASE_URL}/job/get_equipment/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -341,7 +342,7 @@ export const get_pictures = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_pictures/${id}`,
+        `${BASE_URL}/job/get_pictures/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -367,7 +368,7 @@ export const get_other_info = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_other_info/${id}`,
+        `${BASE_URL}/job/get_other_info/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -393,7 +394,7 @@ export const get_land_info = createAsyncThunk(
 
     try {
       const response = await axios.get(
-        `https://api.valtecvaluers.com/api/v1/job/get_land_info/${id}`,
+        `${BASE_URL}/job/get_land_info/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

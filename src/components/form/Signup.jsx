@@ -46,7 +46,11 @@ const Signup = ({ page, setPage, id, setFormData }) => {
     },
   ];
 
-  console.log(list);
+  const handleDelete = (id) => {
+    setList(list.filter((item) => item.id !== id));
+  };
+
+  // console.log(list);
 
   function handleAdd() {
     const newList = list.concat({
@@ -154,16 +158,24 @@ const Signup = ({ page, setPage, id, setFormData }) => {
           </Table>
         </TableContainer>
       </div>
-
+      <div>
+        <button
+          className="bg-blue-500 px-12 py-3 rounded-md text-white text-[20px]"
+          onClick={() => {
+            console.log(typeof list);
+            dispatch(support_staff({ token, list }));
+          }}
+        >
+          {loading ? <Spinner /> : "Submit"}
+        </button>
+      </div>
       <button
         className="bg-green-500 p-2 rounded-md text-white"
         onClick={() => {
-          console.log(typeof list);
-          dispatch(support_staff({ token, list }));
           setPage(page + 1);
         }}
       >
-        {loading ? <Spinner /> : "Next"}
+        Next
       </button>
     </div>
   );

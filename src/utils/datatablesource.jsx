@@ -38,6 +38,8 @@ export const userColumns = [
   },
 ];
 
+
+export const BASE_URL = "http://localhost:8000/api/v1"
 //temporary data
 export const userRows = [
   {

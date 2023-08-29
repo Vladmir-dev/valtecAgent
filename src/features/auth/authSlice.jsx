@@ -3,8 +3,32 @@ import {
   login,
   signup,
   //   otp,
-     get_user
+  get_user,
 } from "./authAction";
+
+Botswana
+Cameroon
+Eritrea
+Gambia
+Ghana
+Kenya
+Lesotho
+Liberia
+Malawi
+Mauritius
+Namibia
+Nigeria
+Rwanda
+Seychelles
+Sierra Leone
+South Africa
+South Sudan
+Sudan
+Swaziland
+Tanzania
+Uganda
+Zambia
+Zimbabwe
 
 const authSlice = createSlice({
   name: "auth",
@@ -33,12 +57,15 @@ const authSlice = createSlice({
       state.error = null;
     });
 
+
+    
+
     builder.addCase(login.fulfilled, (state, action) => {
-      console.log("login token", action.payload);
-      state.isLoading = false;
+      // console.log("login token", action.payload);
       state.token = action.payload.access_token;
       state.refresh_token = action.payload.refresh_token;
       window.location.href = "/dashboard";
+      state.isLoading = false;
     });
 
     builder.addCase(login.rejected, (state, action) => {
@@ -80,7 +107,6 @@ const authSlice = createSlice({
     //   state.error = action.payload;
     // });
 
-    
     // //user
     builder.addCase(get_user.pending, (state) => {
       state.isLoading = true;
